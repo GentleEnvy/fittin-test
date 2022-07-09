@@ -5,9 +5,14 @@ from functools import partial
 from pathlib import Path
 
 # noinspection PyPackageRequirements
+from typing import Set
+
 import environ
+import validated_dc
 
 from app.base.logs.configs import LogConfig
+
+validated_dc.STR_ALIASES[Set] = str(Set)
 
 # env
 
@@ -88,6 +93,7 @@ INSTALLED_APPS = [
     *(['debug_toolbar'] if DEBUG else []),
     # own apps
     'app.base',
+    'app.categories',
 ]
 
 REST_FRAMEWORK = {

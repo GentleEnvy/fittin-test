@@ -9,6 +9,7 @@ dumps/
 staticfiles/
 logs/
 certs/
+feed.xml
 
 
 ### python_gitignore template
