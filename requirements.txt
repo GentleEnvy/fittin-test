@@ -4,7 +4,6 @@ django-environ==0.8.1
 django-filter==21.1
 django-cleanup==6.0.0
 django-templated-mail==1.1.1
-django-cloudinary-storage==0.3.0
 django-celery-email==3.0.0
 django-celery-beat==2.2.1
 django-pickling==1.0
@@ -12,7 +11,6 @@ django-redis==5.2.0
 git+https://github.com/GentleEnvy/django-cacheops  # ==6.0. https://github.com/Suor/django-cacheops/issues/31
 
 djangorestframework==3.13.1
-djangorestframework-simplejwt==5.1.0
 drf-base64==2.0
 drf_orjson_renderer==1.6.0
 drf-spectacular==0.20.2

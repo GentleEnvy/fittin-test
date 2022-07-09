@@ -121,7 +121,7 @@ def extend_schema(
         if not inspect.isclass(BaseSchema):
             BaseSchema = BaseSchema.__class__
 
-        def is_in_scope(ext_schema):
+        def is_in_scope(ext_schema: Any):
             version, _ = ext_schema.view.determine_version(
                 ext_schema.view.request, **ext_schema.view.kwargs
             )

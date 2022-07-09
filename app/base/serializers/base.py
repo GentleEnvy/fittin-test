@@ -1,6 +1,5 @@
+from django.contrib.auth import get_user_model
 from rest_framework import serializers
-
-from app.users.models import User
 
 __all__ = ['BaseSerializer', 'EmptySerializer']
 
@@ -15,5 +14,5 @@ class BaseSerializer(serializers.Serializer):
 
 class EmptySerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
+        model = get_user_model()
         fields = []

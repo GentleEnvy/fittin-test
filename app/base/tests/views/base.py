@@ -1,50 +1,12 @@
-from typing import Any, Callable
+from typing import Any
 from urllib.parse import urlencode
 
 from app.base.exceptions import APIWarning
 from app.base.tests.base import BaseTest
-from app.users.models import Token, User
-from app.users.tests.factories.token import TokenFactory
-from app.users.tests.factories.users import UserFactory
-
-
-class _MeType(User):
-    raw_password: str
-    auth_token: Token
-
-    class Meta:
-        abstract = True
 
 
 class BaseViewTest(BaseTest):
     path: str
-
-    me_class: Callable[..., User] = UserFactory
-    me_data: dict[str, Any] | None = {}
-    _me = None
-
-    @property
-    def me(self) -> _MeType | None:
-        if self._me is None:
-            if self.me_data is None:
-                return None
-            self.me = self.me_class(**self.me_data)
-        return self._me
-
-    @me.setter
-    def me(self, me_):
-        del self.me
-        self._me = me_
-        self.client.force_login(self.me)
-        self.me.auth_token = TokenFactory(user=self.me)
-
-    @me.deleter
-    def me(self):
-        if self._me is not None:
-            self.client.logout()
-            self._me.auth_token.delete()
-            self._me.delete()
-            self._me = None
 
     def get(self, path=None, query=None):
         return self.client.get(f'{path or self.path}?{urlencode(query or {})}')
