@@ -1,16 +1,11 @@
 from collections import defaultdict
-from xml.etree import ElementTree
-from xml.etree.ElementTree import Element
 
+from app.base.parsers.xml.base import BaseXMLParser
 from app.categories.dtos.categories import CategoryDTO
 
 
-class CategoryXMLParser:
-    def parse_from_file(self, filename: str = 'feed.xml') -> set[CategoryDTO]:
-        element_tree = ElementTree.parse(filename)
-        return self._parse(element_tree.getroot())
-
-    def _parse(self, element_root: Element):
+class CategoryXMLParser(BaseXMLParser[CategoryDTO]):
+    def _parse(self, element_root):
         root_categories: set[CategoryDTO] = set()
         child_categories: dict[int, set[CategoryDTO]] = defaultdict(set)
         for element_category in element_root[0][0]:  # root -> shop -> categories

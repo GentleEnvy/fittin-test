@@ -2,19 +2,11 @@ from __future__ import annotations
 
 from dataclasses import asdict, dataclass
 
-from validated_dc import ValidatedDC
-
-from app.base.exceptions import DTOValidationError
 from app.base.models.base import AbstractModel
 
 
 @dataclass
-class BaseDTO(ValidatedDC):
-    def __post_init__(self):
-        self._run_validation()
-        if errors := self.get_errors():
-            raise DTOValidationError(errors)
-
+class BaseDTO:
     @classmethod
     def from_model(cls, instance: AbstractModel, **fields_map: str) -> BaseDTO:
         data = {}

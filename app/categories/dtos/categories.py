@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 import dataclasses
-from typing import Any
 
 from app.base.dtos.base import BaseDTO
 
@@ -8,7 +9,7 @@ from app.base.dtos.base import BaseDTO
 class CategoryDTO(BaseDTO):
     id: int
     name: str
-    children: Any = dataclasses.field(default_factory=set)  # set[CategoryDTO]
+    children: set[CategoryDTO] = dataclasses.field(default_factory=set)
 
     def __hash__(self):
         return self.id
