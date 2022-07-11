@@ -176,7 +176,7 @@ CACHEOPS_DEFAULTS = {
     'cache_on_save': True,
     'ops': ['get', 'fetch', 'exists'],
 }
-CACHEOPS = {'authtoken.*': {}}
+CACHEOPS = {'auth.*': {}, 'authtoken.*': {}, 'categories.*': {}, 'products.*': {}}
 
 CACHEOPS_DEGRADE_ON_FAILURE = True
 
