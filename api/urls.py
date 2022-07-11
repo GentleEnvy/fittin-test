@@ -15,6 +15,9 @@ urlpatterns = [
     path('', SpectacularSwaggerView.as_view(url_name='__docs__')),
     path('django_admin/', admin.site.urls),
     path('base/', include('app.base.urls')),
+    path('feed/', include('app.feed.urls')),
+    path('categories/', include('app.categories.urls')),
+    path('products/', include('app.products.urls')),
     *static(settings.STATIC_URL, document_root=settings.STATIC_ROOT),
     *static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT),
 ]
