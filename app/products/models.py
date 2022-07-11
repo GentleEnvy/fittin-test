@@ -9,7 +9,7 @@ class ProductCategories(AbstractModel):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
     class Meta:
-        db_table = 'product_categories'
+        db_table = 'products_product_categories'
         unique_together = ('product', 'category')
 
 

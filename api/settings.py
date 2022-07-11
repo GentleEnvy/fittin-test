@@ -90,6 +90,7 @@ INSTALLED_APPS = [
     'app.base',
     'app.categories',
     'app.products',
+    'app.feed',
 ]
 
 REST_FRAMEWORK = {

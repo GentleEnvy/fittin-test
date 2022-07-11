@@ -9,22 +9,17 @@ from app.products.parsers.xml import ProductXMLParser
 class Command(BaseCommand):
     def __init__(self):
         super().__init__()
+        self.feed_filename = 'feed.xml'
         self.category_parser = CategoryXMLParser()
         self.category_factory = CategoryFactory()
         self.product_parser = ProductXMLParser()
         self.product_factory = ProductFactory()
 
     def handle(self, *args, **options):
-        match options:
-            case {'filename': str(filename)}:
-                category_dtos = self.category_parser.parse_from_file(filename)
-                product_dtos = self.product_parser.parse_from_file(filename)
-            case _:
-                category_dtos = self.category_parser.parse_from_file()
-                product_dtos = self.product_parser.parse_from_file()
-        for category_dto in category_dtos:
+        filename = options.get('filename') or self.feed_filename
+        for category_dto in self.category_parser.parse_from_file(filename):
             self.category_factory.create(category_dto)
-        for product_dto in product_dtos:
+        for product_dto in self.product_parser.parse_from_file(filename):
             self.product_factory.create(product_dto)
 
     def add_arguments(self, parser):
